@@ -118,6 +118,7 @@ func TestTFPlanRoundTrip(t *testing.T) {
 				},
 			},
 		},
+		DriftedResources: []*plans.ResourceInstanceChangeSrc{},
 		TargetAddrs: []addrs.Targetable{
 			addrs.Resource{
 				Mode: addrs.ManagedResourceMode,
@@ -243,6 +244,7 @@ func TestTFPlanRoundTripDestroy(t *testing.T) {
 				},
 			},
 		},
+		DriftedResources: []*plans.ResourceInstanceChangeSrc{},
 		TargetAddrs: []addrs.Targetable{
 			addrs.Resource{
 				Mode: addrs.ManagedResourceMode,

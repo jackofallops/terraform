@@ -33,6 +33,9 @@ message Plan {
     // each resource to determine which module it belongs to.
     repeated ResourceInstanceChange resource_changes = 3;
 
+    // FIXME
+    repeated ResourceInstanceChange resource_drift = 18;
+
     // An unordered set of proposed changes to outputs in the root module
     // of the configuration. This set also includes "no action" changes for
     // outputs that are not changing, as context for detecting inconsistencies
