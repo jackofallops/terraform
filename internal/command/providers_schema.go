@@ -35,13 +35,6 @@ func (c *ProvidersSchemaCommand) Run(args []string) int {
 		return 1
 	}
 
-	if !jsonOutput {
-		c.Ui.Error(
-			"The `terraform providers schema` command requires the `-json` flag.\n")
-		cmdFlags.Usage()
-		return 1
-	}
-
 	// Check for user-supplied plugin path
 	var err error
 	if c.pluginPath, err = c.loadPluginPath(); err != nil {
@@ -102,7 +95,11 @@ func (c *ProvidersSchemaCommand) Run(args []string) int {
 		c.Ui.Error(fmt.Sprintf("Failed to marshal provider schemas to json: %s", err))
 		return 1
 	}
-	c.Ui.Output(string(jsonSchemas))
+	if !jsonOutput {
+		jsonprovider.StartAPI(schemas)
+	} else {
+		c.Ui.Output(string(jsonSchemas))
+	}
 
 	return 0
 }
